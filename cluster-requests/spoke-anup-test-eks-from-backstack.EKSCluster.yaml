@@ -1,0 +1,22 @@
+apiVersion: backstack.dev/v1alpha1
+kind: EKSCluster
+metadata:
+  name: spoke-spoke-anup-test-eks-from-backstack
+  namespace: default
+spec:
+  parameters:
+    id: spoke-spoke-anup-test-eks-from-backstack
+    region: us-west-1
+    iam:
+      roleArn: arn:aws:iam::844333597536:role/eksClusterRole-anudeep
+    version: "1.28"
+    nodes:
+      count: 1
+      instanceType: t3.medium
+    kyverno_custom_repository: 
+  writeConnectionSecretToRef:
+    name: spoke-spoke-anup-test-eks-from-backstack-kubeconfig
+  publishConnectionDetailsTo:
+    name: spoke-spoke-anup-test-eks-from-backstack/spoke-spoke-anup-test-eks-from-backstack-kubeconfig
+    configRef:
+      name: vault
