@@ -1,0 +1,20 @@
+apiVersion: backstack.dev/v1alpha1
+kind: AKSCluster
+metadata:
+  name: spoke-spoke-aks-anup-from-backstack
+  namespace: default
+spec:
+  parameters:
+    id: spoke-spoke-aks-anup-from-backstack
+    region: Central India
+    version: 1.29.2
+    nodes:
+      count: 3
+      instanceType: Standard_B2s
+    kyverno_custom_repository: 
+  writeConnectionSecretToRef:
+    name: spoke-spoke-aks-anup-from-backstack-kubeconfig
+  publishConnectionDetailsTo:
+    name: spoke-spoke-aks-anup-from-backstack/spoke-spoke-aks-anup-from-backstack-kubeconfig
+    configRef:
+      name: vault
